@@ -1,0 +1,103 @@
+{%extends 'base.html'%}
+{% load bootstrap4 %}
+{% block pagetitle %}
+<h3>{{jobs|length}} + Jobs Available</h3>
+{% endblock %}
+{% block body %}
+    <!-- job_listing_area_start  -->
+    <div class="job_listing_area plus_padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="job_filter white-bg">
+                        <div class="form_inner white-bg">
+                            <h3>Filter</h3>
+                            <form method="GET">
+                                {% bootstrap_form myfilter.form %}
+                                <input type="submit" value="Search" class="boxed-btn3 w-100 mt-2">
+                            </form>
+                        </div>
+                       
+                       
+                    </div>
+                </div>
+                <div class="col-lg-9">
+                    <div class="recent_joblist_wrap">
+                        <div class="recent_joblist white-bg ">
+                            <div class="row align-items-center">
+                                <div class="col-md-6">
+                                    <h4>Job Listing</h4>
+                                </div>
+                               
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="job_lists m-0">
+                        <div class="row">
+                     <!--/////////// make jobs loop ////////////-->
+                     <div class="col-lg-12 col-md-12">
+                          {% for job in page_obj %}
+                          
+                            <div class="single_jobs white-bg d-flex justify-content-between">
+                                <div class="jobs_left d-flex align-items-center ">
+                                    <div class="thumb" style="background-image: url({{job.image.url}});background-size: cover;background-repeat: no-repeat;background-position: center;">
+                                        
+                                    </div>
+                                    <div class="jobs_conetent">
+                                        <a href="{%url 'jobs:jobs_details' job.id %}"><h4>{{job.title}}</h4></a>
+                                        <div class="links_locat d-flex align-items-center">
+                                            <div class="location">
+                                                <p> <i class="fa fa-map-marker"></i> {{job.location}}</p>
+                                            </div>
+                                            <div class="location">
+                                                <p> <i class="fa fa-clock-o"></i>{{job.job_type}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="jobs_right">
+                                    <div class="apply_now">
+                                        <a class="heart_mark" href="#"> <i class="fa fa-heart"></i> </a>
+                                        <a href="job_details.html" class="boxed-btn3">Apply Now</a>
+                                    </div>
+                                    <div class="date">
+                                        <p>{{job.published_at|date:'dMo'}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                          {% endfor %}
+                            </div>
+    
+                        </div>
+                        {% if page_obj.has_other_pages %} 
+                        <div class="row ">
+                            <div class="col-lg-12 ">
+                                <div class="pagination_wrap">
+                                    <ul class="mx-auto">
+                                        {% if page_obj.has_previous %}
+                                        <li><a href="?page={{page_obj.previous_page_number}}"> <i class="ti-angle-left"></i> </a></li>
+                                        {% endif %}
+                                        {% for i in page_obj.paginator.page_range %}
+                                        <li><a href="?page={{i}}"><span>{{i}}</span></a></li>
+                                        {% endfor %}
+                                        {% if page_obj.has_next %}
+                                        <li><a href="?page={{page_obj.next_page_number}}"><i class="ti-angle-right"></i></a></li>
+                                        {% endif %}    
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+
+                    </div>
+                </div>
+            </div>
+            </div>
+            </div>
+            </div>
+        </div>
+    </div>
+    <!-- job_listing_area_end  -->
+{% endblock %}
+    

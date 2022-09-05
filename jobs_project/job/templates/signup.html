@@ -1,0 +1,13 @@
+{%extends 'base.html'%}
+{% load bootstrap4 %}
+{% block pagetitle %}
+<h3> Signup</h3>
+{% endblock %}
+{% block body %}
+<form method="post" class="w-50 mx-auto pt-5 pb-5">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    <input type="submit" value="Signup" class="boxed-btn3 w-100"/>
+  </form>
+  
+{% endblock %}

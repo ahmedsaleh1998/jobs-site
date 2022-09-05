@@ -1,0 +1,52 @@
+{%extends 'base.html'%}
+{% load bootstrap4 %}
+{% block pagetitle %}
+<h3>Contact Us</h3>
+{% endblock %}
+{% block body %}
+<!-- ================ contact section start ================= -->
+<section class="contact-section section_padding">
+    <div class="container">
+      <div class="d-none d-sm-block mb-5 pb-4">
+        
+
+      <div class="row">
+        <div class="col-12">
+          <h2 class="contact-title">Get in Touch</h2>
+        </div>
+        <div class="col-lg-8">
+          <form class="form-contact contact_form" action="" method="post" id="contactForm" novalidate="novalidate">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            <input type="submit" value="send" class="boxed-btn3 w-100"/>
+            
+            
+          </form>
+        </div>
+        <div class="col-lg-4">
+          <div class="media contact-info">
+            <span class="contact-info__icon"><i class="ti-home"></i></span>
+            <div class="media-body">
+              <h3>Egypt, Cairo.</h3>
+              <p>Maadi, CA 17822</p>
+            </div>
+          </div>
+          <div class="media contact-info">
+            <span class="contact-info__icon"><i class="ti-tablet"></i></span>
+            <div class="media-body">
+              <h3> (+20) 01284824533</h3>
+              <p>Mon to Fri 9am to 6pm</p>
+            </div>
+          </div>
+          <div class="media contact-info">
+            <span class="contact-info__icon"><i class="ti-email"></i></span>
+            <div class="media-body">
+              <h3>ahmed.mahmoud.saleh1998@gmail.com</h3>
+              <p>Send us your query anytime!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}
